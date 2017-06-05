@@ -1,11 +1,4 @@
 
-@font-face {
-  font-family: "SentyTang";
-  src: url("SentyTang.ttf");
-  font-style: normal;
-  font-weight: normal;
-}
-
 body {
   display: none;
   background-color: #f7eed6;
@@ -49,6 +42,7 @@ body {
   margin-top: 1em;
   padding-left: 2em;
   line-height: 1.6em;
+  max-height: 50vh;
 }
 
 .author span {

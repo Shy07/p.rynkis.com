@@ -40,7 +40,7 @@ class App extends Component {
       headers: {
         'x-access-token': 'p.rynki.com'
       },
-      // url: 'http://localhost:8084/poetry/random',
+      // url: 'http://192.168.0.103:8080/poetry/random',
       url: 'http://cp.rynkis.com/poetry/random',
       dataType: 'json',
       type: 'GET',
@@ -59,18 +59,25 @@ class App extends Component {
   }
 
   componentDidUpdate () {
-    this.start()
+    let poetry = this.state.poetry
+    if (poetry !== null) {
+      let style = document.createElement('style')
+      style.type = 'text/css'
+      style.innerHTML = `\
+  @font-face {
+    font-family: "SentyTang";
+    src: url('${poetry.font}') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+}`
+      document.head.appendChild(style)
+      this.start()
+    }
   }
-
   render () {
     let poetry = this.state.poetry
     let content = null
     if (poetry !== null) {
-      let link = document.createElement('link')
-      link.rel = 'stylesheet'
-      // link.href = `http://poetry.shy07.com/assets/css/${poetry.hash}/SentyTang.css`
-      link.type = 'text/css'
-      document.head.appendChild(link)
       document.title = `${poetry.title} - ${poetry.author}`
       let commits = null
       if (poetry.commits.length > 0) {
